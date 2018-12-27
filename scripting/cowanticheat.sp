@@ -943,8 +943,9 @@ public void CheckAHKStrafe(int client, int mouse)
 Handle CreateRequest_TimePlayed(int client)
 {
 	char request_url[256];
-	sm_cac_steamapi_key
-	Format(request_url, sizeof(request_url), "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%s",sm_cac_steamapi_key);
+	char s_Steamapi[256];
+	sm_cac_steamapi_key.GetString(s_Steamapi, sizeof(s_Steamapi));
+	Format(request_url, sizeof(request_url), "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%s",s_Steamapi);
 	Handle request = SteamWorks_CreateHTTPRequest(k_EHTTPMethodGET, request_url);
 	
 	char steamid[64];
@@ -987,7 +988,9 @@ public int TimePlayed_OnHTTPResponse(Handle request, bool bFailure, bool bReques
 Handle CreateRequest_ProfileStatus(int client)
 {
 	char request_url[256];
-	Format(request_url, sizeof(request_url), "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%s",sm_cac_steamapi_key);
+	char s_Steamapi[256];
+	sm_cac_steamapi_key.GetString(s_Steamapi, sizeof(s_Steamapi));
+	Format(request_url, sizeof(request_url), "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%s",s_Steamapi);
 	Handle request = SteamWorks_CreateHTTPRequest(k_EHTTPMethodGET, request_url);
 	
 	char steamid[64];
